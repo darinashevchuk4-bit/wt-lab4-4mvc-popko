@@ -1,6 +1,6 @@
-# WT-4 — ASP.NET Core MVC «MeloWave»
+# WT-4 — ASP.NET Core MVC «MeloWave // УИР ЭДИШИОН »
 
-Вариант 13: музыкальный сервис. Проект продолжает предметную область лабораторной WT-3 (`Track`) и реализует серверное веб-приложение на ASP.NET Core MVC (.NET 8).
+Вариант 13: музыкальный сервис для поедания ШАУРМЫ. Проект продолжает предметную область лабораторной WT-3 (`Track`) и реализует серверное веб-приложение на ASP.NET Core MVC (.NET 8).
 
 ## Возможности
 
@@ -67,16 +67,3 @@ docker run --rm -p 10000:10000 -e PORT=10000 melowave-wt4
 **Ссылки после публикации:**
 - GitHub: _добавить URL созданного репозитория_
 - Render: _добавить публичный URL после успешного deployment_
-
-## Инициализация Git и публикация
-
-Архив содержит исходный код без истории `.git`, поэтому создайте собственный репозиторий перед отправкой на GitHub:
-
-```bash
-git init
-git branch -M main
-git add .
-git commit -m "Initial commit: WT-4 MeloWave"
-git remote add origin https://github.com/<ваш-логин>/wt-lab4-4mvc-popko.git
-git push -u origin main
-```

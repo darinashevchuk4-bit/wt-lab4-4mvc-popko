@@ -9,6 +9,6 @@ RUN dotnet publish ./wt-lab4-4mvc-popko.csproj -c Release -o /app/publish /p:Use
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_URLS=http://0.0.0.0:10000
 EXPOSE 10000
 ENTRYPOINT ["dotnet", "wt-lab4-4mvc-popko.dll"]
