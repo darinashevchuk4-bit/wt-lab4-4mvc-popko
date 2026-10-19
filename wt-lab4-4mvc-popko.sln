@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wt-lab4-4mvc-popko", "wt-lab4-4mvc-popko.csproj", "{43D0F636-80B1-45F3-8DE8-09542BEEE7B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43D0F636-80B1-45F3-8DE8-09542BEEE7B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D0F636-80B1-45F3-8DE8-09542BEEE7B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D0F636-80B1-45F3-8DE8-09542BEEE7B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D0F636-80B1-45F3-8DE8-09542BEEE7B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6D97075A-94B6-4632-82FD-CEF4B276938D}
+	EndGlobalSection
+EndGlobal

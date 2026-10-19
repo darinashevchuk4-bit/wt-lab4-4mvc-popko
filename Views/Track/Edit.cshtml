@@ -1,0 +1,36 @@
+@model Track
+@{
+    ViewData["Title"] = "Редактирование трека";
+}
+
+<div class="container py-5 form-page">
+    <a asp-action="Details" asp-route-id="@Model.Id" class="back-link"><i class="bi bi-arrow-left me-2"></i>Вернуться к карточке трека</a>
+    <div class="row justify-content-center mt-4">
+        <div class="col-12 col-xl-9">
+            <div class="form-card">
+                <div class="form-card-heading"><span class="form-icon form-icon-edit"><i class="bi bi-pencil-square"></i></span><div><span class="section-kicker">ИЗМЕНЕНИЕ ЗАПИСИ · ID @Model.Id</span><h1>Редактировать трек</h1><p>Измените необходимые поля и сохраните данные.</p></div></div>
+                <form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="track-form">
+                    <input asp-for="Id" type="hidden" />
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3"></div>
+                    <div class="row g-3">
+                        <div class="col-md-6"><label asp-for="Title" class="form-label"></label><span class="required-mark">*</span><input asp-for="Title" class="form-control" /><span asp-validation-for="Title" class="field-validation"></span></div>
+                        <div class="col-md-6"><label asp-for="Artist" class="form-label"></label><span class="required-mark">*</span><input asp-for="Artist" class="form-control" /><span asp-validation-for="Artist" class="field-validation"></span></div>
+                        <div class="col-md-6"><label asp-for="Album" class="form-label"></label><input asp-for="Album" class="form-control" /><span asp-validation-for="Album" class="field-validation"></span></div>
+                        <div class="col-md-6"><label asp-for="Genre" class="form-label"></label><span class="required-mark">*</span><input asp-for="Genre" class="form-control" /><span asp-validation-for="Genre" class="field-validation"></span></div>
+                        <div class="col-md-4"><label asp-for="Year" class="form-label"></label><input asp-for="Year" type="number" min="1900" max="2100" class="form-control" /><span asp-validation-for="Year" class="field-validation"></span></div>
+                        <div class="col-md-4"><label asp-for="DurationSeconds" class="form-label"></label><input asp-for="DurationSeconds" type="number" min="1" max="3600" class="form-control" /><span asp-validation-for="DurationSeconds" class="field-validation"></span></div>
+                        <div class="col-md-4"><label asp-for="PlayCount" class="form-label"></label><input asp-for="PlayCount" type="number" min="0" class="form-control" /><span asp-validation-for="PlayCount" class="field-validation"></span></div>
+                        <div class="col-12"><div class="form-check form-switch"><input asp-for="IsAvailable" class="form-check-input" /><label asp-for="IsAvailable" class="form-check-label"></label></div></div>
+                    </div>
+                    <div class="form-actions mt-4 pt-3">
+                        <button type="submit" class="btn btn-primary rounded-pill px-4"><i class="bi bi-save me-2"></i>Сохранить изменения</button>
+                        <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-secondary rounded-pill px-4">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

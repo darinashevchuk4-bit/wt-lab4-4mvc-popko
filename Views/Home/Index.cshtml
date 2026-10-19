@@ -1,0 +1,55 @@
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<section class="hero-section">
+    <div class="container py-5">
+        <div class="row align-items-center g-5 py-lg-4">
+            <div class="col-lg-7">
+                <span class="eyebrow"><i class="bi bi-vinyl-fill me-2"></i>ТВОЯ МУЗЫКАЛЬНАЯ МЕДИАТЕКА</span>
+                <h1 class="hero-title mt-3">Музыка, которая<br /><span>всегда с тобой.</span></h1>
+                <p class="hero-description mt-4">Учебное веб-приложение для управления коллекцией музыкальных треков. Просматривай каталог, находи любимые композиции и редактируй сведения о них.</p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <a class="btn btn-light btn-lg hero-primary" asp-controller="Track" asp-action="Index"><i class="bi bi-collection-play me-2"></i>Открыть медиатеку</a>
+                    <a class="btn btn-outline-light btn-lg hero-secondary" asp-controller="Track" asp-action="Create"><i class="bi bi-plus-circle me-2"></i>Добавить трек</a>
+                </div>
+                <div class="hero-facts mt-5">
+                    <div><strong>01</strong><span>Каталог</span></div>
+                    <div><strong>02</strong><span>Поиск и фильтры</span></div>
+                    <div><strong>03</strong><span>Редактирование</span></div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="hero-art-wrap">
+                    <div class="hero-orbit orbit-one"></div>
+                    <div class="hero-orbit orbit-two"></div>
+                    <div class="hero-art-card">
+                        <img src="~/images/music-wave.svg" alt="Абстрактная иллюстрация звуковой волны" class="hero-wave" />
+                        <div class="hero-art-caption"><span class="playing-dot"></span><span>Твоя коллекция. Твой ритм.</span><i class="bi bi-headphones ms-auto"></i></div>
+                    </div>
+                    <div class="floating-note note-one"><i class="bi bi-music-note-beamed"></i></div>
+                    <div class="floating-note note-two"><i class="bi bi-vinyl"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <div class="section-heading mb-4">
+        <span class="section-kicker">ВОЗМОЖНОСТИ</span>
+        <h2>Всё важное — под рукой</h2>
+        <p>Интерфейс построен на MVC: контроллер обрабатывает запросы, модель описывает трек, а Razor-представления формируют HTML-страницы.</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <article class="feature-card h-100"><span class="feature-icon"><i class="bi bi-grid-1x2-fill"></i></span><h3>Удобный каталог</h3><p>Сведения об исполнителе, альбоме, жанре, годе выпуска и длительности собраны в одной карточке.</p></article>
+        </div>
+        <div class="col-md-4">
+            <article class="feature-card h-100"><span class="feature-icon feature-icon-purple"><i class="bi bi-search"></i></span><h3>Поиск и фильтры</h3><p>Находи композиции по названию, исполнителю или альбому, фильтруй их по жанру и меняй порядок сортировки.</p></article>
+        </div>
+        <div class="col-md-4">
+            <article class="feature-card h-100"><span class="feature-icon feature-icon-orange"><i class="bi bi-sliders"></i></span><h3>Управление данными</h3><p>Добавляй новые записи и редактируй существующие. Ввод проверяется до изменения коллекции.</p></article>
+        </div>
+    </div>
+</section>

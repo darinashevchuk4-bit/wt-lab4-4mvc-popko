@@ -1,0 +1,158 @@
+@model TrackIndexViewModel
+@{
+    ViewData["Title"] = "Медиатека";
+    var cardIndex = 0;
+}
+
+<div class="container py-5">
+    <div class="page-heading d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+        <div>
+            <span class="section-kicker">MELOWAVE / КОЛЛЕКЦИЯ</span>
+            <h1 class="display-title mt-2">Музыкальная медиатека</h1>
+            <p class="text-secondary mb-0">Находи, изучай и редактируй треки своей коллекции.</p>
+        </div>
+        <a class="btn btn-primary rounded-pill px-4 py-2" asp-action="Create"><i class="bi bi-plus-lg me-2"></i>Добавить трек</a>
+    </div>
+
+    @if (TempData["SuccessMessage"] is string successMessage)
+    {
+        <div class="alert alert-success alert-dismissible fade show rounded-4" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>@successMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+        </div>
+    }
+
+    <form asp-action="Index" method="get" class="filter-panel mb-4">
+        <div class="row g-3 align-items-end">
+            <div class="col-12 col-lg-5">
+                <label for="search" class="form-label">Поиск по медиатеке</label>
+                <div class="input-group input-group-lg search-control">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input id="search" name="search" value="@Model.SearchText" class="form-control" placeholder="Название, исполнитель или альбом" />
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <label for="genre" class="form-label">Жанр</label>
+                <select id="genre" name="genre" class="form-select form-select-lg">
+                    @if (string.IsNullOrEmpty(Model.SelectedGenre))
+                    {
+                        <option value="" selected>Все жанры</option>
+                    }
+                    else
+                    {
+                        <option value="">Все жанры</option>
+                    }
+                    @foreach (var genre in Model.Genres)
+                    {
+                        if (genre == Model.SelectedGenre)
+                        {
+                            <option value="@genre" selected>@genre</option>
+                        }
+                        else
+                        {
+                            <option value="@genre">@genre</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-6 col-lg-2">
+                <label for="sort" class="form-label">Сортировка</label>
+                <select id="sort" name="sort" class="form-select form-select-lg">
+                    @if (Model.Sort == "title")
+                    {
+                        <option value="title" selected>По названию</option>
+                    }
+                    else
+                    {
+                        <option value="title">По названию</option>
+                    }
+                    @if (Model.Sort == "artist")
+                    {
+                        <option value="artist" selected>По исполнителю</option>
+                    }
+                    else
+                    {
+                        <option value="artist">По исполнителю</option>
+                    }
+                    @if (Model.Sort == "popular")
+                    {
+                        <option value="popular" selected>По популярности</option>
+                    }
+                    else
+                    {
+                        <option value="popular">По популярности</option>
+                    }
+                    @if (Model.Sort == "year")
+                    {
+                        <option value="year" selected>Сначала новые</option>
+                    }
+                    else
+                    {
+                        <option value="year">Сначала новые</option>
+                    }
+                </select>
+            </div>
+            <div class="col-12 col-lg-2 d-grid">
+                <button type="submit" class="btn btn-dark btn-lg rounded-3"><i class="bi bi-funnel me-2"></i>Применить</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <p class="results-caption mb-0"><strong>@Model.Tracks.Count</strong> трек(ов) найдено</p>
+        @if (!string.IsNullOrWhiteSpace(Model.SearchText) || !string.IsNullOrWhiteSpace(Model.SelectedGenre))
+        {
+            <a class="small text-decoration-none" asp-action="Index"><i class="bi bi-arrow-counterclockwise me-1"></i>Сбросить фильтры</a>
+        }
+    </div>
+
+    @if (Model.Tracks.Count == 0)
+    {
+        <div class="empty-state">
+            <i class="bi bi-music-note-list"></i>
+            <h2>Ничего не найдено</h2>
+            <p>Попробуйте изменить запрос или сбросить фильтры.</p>
+            <a class="btn btn-outline-primary rounded-pill px-4" asp-action="Index">Показать все треки</a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var track in Model.Tracks)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card track-card h-100 border-0">
+                        <div class="track-cover art-@((cardIndex % 5) + 1)">
+                            <span class="cover-id">TRACK / @track.Id.ToString("00")</span>
+                            <i class="bi bi-music-note-beamed cover-note"></i>
+                            <span class="cover-wave"></span>
+                            <span class="cover-duration"><i class="bi bi-clock me-1"></i>@track.DurationDisplay</span>
+                        </div>
+                        <div class="card-body d-flex flex-column p-4">
+                            <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                                <span class="badge genre-badge">@track.Genre</span>
+                                @if (track.IsAvailable)
+                                {
+                                    <span class="availability available"><span></span>Доступен</span>
+                                }
+                                else
+                                {
+                                    <span class="availability unavailable"><span></span>Недоступен</span>
+                                }
+                            </div>
+                            <h2 class="track-title">@track.Title</h2>
+                            <p class="track-artist mb-1">@track.Artist</p>
+                            <p class="track-album mb-3">@(string.IsNullOrWhiteSpace(track.Album) ? "Альбом не указан" : track.Album) · @track.Year</p>
+                            <div class="track-stats mt-auto mb-3"><i class="bi bi-headphones me-2"></i>@track.PlayCount.ToString("N0") прослушиваний</div>
+                            <div class="d-flex gap-2">
+                                <a asp-action="Details" asp-route-id="@track.Id" class="btn btn-primary flex-grow-1 rounded-pill"><i class="bi bi-arrow-up-right-circle me-1"></i>Подробнее</a>
+                                <a asp-action="Edit" asp-route-id="@track.Id" class="btn btn-outline-secondary rounded-pill icon-action" aria-label="Редактировать @track.Title" title="Редактировать"><i class="bi bi-pencil"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                cardIndex++;
+            }
+        </div>
+    }
+</div>

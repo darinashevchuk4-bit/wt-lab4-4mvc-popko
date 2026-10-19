@@ -1,0 +1,47 @@
+@model Track
+@{
+    ViewData["Title"] = "Информация о треке";
+}
+
+<div class="container py-5">
+    <a asp-action="Index" class="back-link"><i class="bi bi-arrow-left me-2"></i>Назад к медиатеке</a>
+    <div class="row justify-content-center mt-4">
+        <div class="col-12 col-xl-10">
+            <div class="details-card overflow-hidden">
+                <div class="details-banner">
+                    <span class="eyebrow"><i class="bi bi-vinyl-fill me-2"></i>КАРТОЧКА ТРЕКА / @Model.Id.ToString("00")</span>
+                    <div class="details-banner-note"><i class="bi bi-music-note-beamed"></i></div>
+                </div>
+                <div class="p-4 p-lg-5">
+                    <div class="d-flex flex-column flex-md-row justify-content-between gap-3 align-items-md-start">
+                        <div>
+                            <span class="badge genre-badge mb-3">@Model.Genre</span>
+                            <h1 class="details-title">@Model.Title</h1>
+                            <p class="details-artist">@Model.Artist</p>
+                        </div>
+                        @if (Model.IsAvailable)
+                        {
+                            <span class="status-pill status-on"><i class="bi bi-check-circle-fill me-2"></i>Доступен для прослушивания</span>
+                        }
+                        else
+                        {
+                            <span class="status-pill status-off"><i class="bi bi-pause-circle-fill me-2"></i>Временно недоступен</span>
+                        }
+                    </div>
+                    <hr class="my-4" />
+                    <div class="row g-4">
+                        <div class="col-6 col-md-3"><div class="detail-metric"><span>ID трека</span><strong>@Model.Id</strong></div></div>
+                        <div class="col-6 col-md-3"><div class="detail-metric"><span>Год выпуска</span><strong>@Model.Year</strong></div></div>
+                        <div class="col-6 col-md-3"><div class="detail-metric"><span>Длительность</span><strong>@Model.DurationDisplay</strong></div></div>
+                        <div class="col-6 col-md-3"><div class="detail-metric"><span>Прослушивания</span><strong>@Model.PlayCount.ToString("N0")</strong></div></div>
+                    </div>
+                    <div class="album-detail mt-4"><i class="bi bi-disc me-3"></i><div><span>Альбом</span><strong>@(string.IsNullOrWhiteSpace(Model.Album) ? "Не указан" : Model.Album)</strong></div></div>
+                    <div class="d-flex flex-wrap gap-2 mt-4">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary rounded-pill px-4"><i class="bi bi-pencil me-2"></i>Редактировать</a>
+                        <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Назад к списку</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

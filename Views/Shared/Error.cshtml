@@ -1,0 +1,5 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Ошибка";
+}
+<div class="container py-5"><div class="empty-state"><i class="bi bi-exclamation-triangle"></i><h1>Ошибка обработки запроса</h1><p>Попробуйте повторить действие.</p>@if (Model.ShowRequestId) { <p class="text-muted small">Код запроса: <code>@Model.RequestId</code></p> }<a asp-controller="Home" asp-action="Index" class="btn btn-primary rounded-pill">На главную</a></div></div>

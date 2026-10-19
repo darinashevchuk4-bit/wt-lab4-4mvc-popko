@@ -1,0 +1,65 @@
+@model Track
+@{
+    ViewData["Title"] = "Добавление трека";
+}
+
+<div class="container py-5 form-page">
+    <a asp-action="Index" class="back-link"><i class="bi bi-arrow-left me-2"></i>Назад к медиатеке</a>
+    <div class="row justify-content-center mt-4">
+        <div class="col-12 col-xl-9">
+            <div class="form-card">
+                <div class="form-card-heading"><span class="form-icon"><i class="bi bi-plus-lg"></i></span><div><span class="section-kicker">НОВАЯ ЗАПИСЬ</span><h1>Добавить трек</h1><p>Заполните информацию о композиции. Поля со звёздочкой обязательны.</p></div></div>
+                <form asp-action="Create" method="post" class="track-form">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3"></div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label asp-for="Title" class="form-label"></label><span class="required-mark">*</span>
+                            <input asp-for="Title" class="form-control" placeholder="Например, Yellow" />
+                            <span asp-validation-for="Title" class="field-validation"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Artist" class="form-label"></label><span class="required-mark">*</span>
+                            <input asp-for="Artist" class="form-control" placeholder="Исполнитель или группа" />
+                            <span asp-validation-for="Artist" class="field-validation"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Album" class="form-label"></label>
+                            <input asp-for="Album" class="form-control" placeholder="Название альбома" />
+                            <span asp-validation-for="Album" class="field-validation"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Genre" class="form-label"></label><span class="required-mark">*</span>
+                            <input asp-for="Genre" class="form-control" placeholder="Например, Alternative" />
+                            <span asp-validation-for="Genre" class="field-validation"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="Year" class="form-label"></label>
+                            <input asp-for="Year" type="number" min="1900" max="2100" class="form-control" />
+                            <span asp-validation-for="Year" class="field-validation"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="DurationSeconds" class="form-label"></label>
+                            <input asp-for="DurationSeconds" type="number" min="1" max="3600" class="form-control" />
+                            <span asp-validation-for="DurationSeconds" class="field-validation"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="PlayCount" class="form-label"></label>
+                            <input asp-for="PlayCount" type="number" min="0" class="form-control" />
+                            <span asp-validation-for="PlayCount" class="field-validation"></span>
+                        </div>
+                        <div class="col-12"><div class="form-text mb-2"><i class="bi bi-info-circle me-1"></i>Длительность указывается в секундах: например, 215 — это 03:35.</div>
+                            <div class="form-check form-switch"><input asp-for="IsAvailable" class="form-check-input" /><label asp-for="IsAvailable" class="form-check-label"></label></div>
+                        </div>
+                    </div>
+                    <div class="form-actions mt-4 pt-3">
+                        <button type="submit" class="btn btn-primary rounded-pill px-4"><i class="bi bi-check2-circle me-2"></i>Сохранить трек</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
